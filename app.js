@@ -8,6 +8,7 @@ const cors = require('cors');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const projects = require('./routes/projects');
 
 const app = express();
 
