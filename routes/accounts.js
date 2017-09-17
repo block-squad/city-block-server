@@ -10,13 +10,31 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  query.getOneAccount().then(account => {
+  query.getOneAccount(req.params.id).then(account => {
     res.json(account)
   })
 });
 
 router.get('/contributions/:id', function(req, res, next) {
-  query.getAllContributionsForOneAccount().then(account => {
+  query.getAllContributionsForOneAccount(req.params.id).then(account => {
+    res.json(account)
+  })
+});
+
+router.post('/', function(req, res, next) {
+  query.postToAccount(req.body).then(account => {
+    res.json(account)
+  })
+});
+
+router.patch('/:id', function(req, res, next) {
+  query.updateAccount(req.body, req.params.id).then(account => {
+    res.json(account)
+  })
+});
+
+router.delete('/:id', function(req, res, next) {
+  query.deleteAccount(req.params.id).then(account => {
     res.json(account)
   })
 });
