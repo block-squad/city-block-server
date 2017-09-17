@@ -15,12 +15,6 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.get('/contributions/:id', function(req, res, next) {
-  query.getContributionsByProject(req.params.id).then(project => {
-    res.json(project)
-  })
-});
-
 router.post('/', function(req, res, next) {
   query.postToProject(req.body).then(project => {
     res.json(project)

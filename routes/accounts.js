@@ -21,14 +21,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  query.getOneAccount(req.params.id).then(account => {
-    res.json(account)
-  })
-});
-
-router.get('/contributions/:id', function(req, res, next) {
-  query.getContributionsByAcccount(req.params.id).then(account => {
-    res.json(account)
+  query.getOneAccount(req.params.id).then(accounts => {
+    return Promise.all(accounts.map((account) => {
+      return query.getContributionsByAccount(account.id)
+        .then((contributions) => {
+          account.contributions = contributions;
+          return account
+        })
+    })).then((data) => {
+      let accounts = data.sort((a,b) => {
+        return a.id - b.id
+      })
+      res.json(accounts)
+    })
   })
 });
 
