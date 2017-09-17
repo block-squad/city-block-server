@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.text('desc').notNullable();
     table.float('money', 8, 2).notNullable();
     table.float('target', 8, 2).notNullable();
+    table.date('date').notNullable();
     table.integer('owner_id').references('account.id').onDelete('CASCADE');
     table.integer('official_id').references('account.id').onDelete('CASCADE');
   })
