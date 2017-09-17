@@ -15,8 +15,8 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.get('/:id', function(req, res, next) {
-  query.getAllContributionsForOneProject(req.params.id).then(project => {
+router.get('/contributions/:id', function(req, res, next) {
+  query.getContributionsByProject(req.params.id).then(project => {
     res.json(project)
   })
 });
@@ -35,7 +35,7 @@ router.patch('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
   query.deleteProject(req.params.id).then(project => {
-    res.json(project)
+    res.send("project deleted")
   })
 });
 

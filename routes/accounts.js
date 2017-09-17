@@ -5,7 +5,18 @@ const query = require('../db/query.js')
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   query.getAllAccounts().then(accounts => {
-    res.json(accounts)
+    return Promise.all(accounts.map((account) => {
+      return query.getContributionsByAccount(account.id)
+        .then((contributions) => {
+          account.contributions = contributions;
+          return account
+        })
+    })).then((data) => {
+      let accounts = data.sort((a,b) => {
+        return a.id - b.id
+      })
+      res.json(accounts)
+    })
   })
 });
 
@@ -16,7 +27,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/contributions/:id', function(req, res, next) {
-  query.getAllContributionsForOneAccount(req.params.id).then(account => {
+  query.getContributionsByAcccount(req.params.id).then(account => {
     res.json(account)
   })
 });
@@ -35,7 +46,7 @@ router.patch('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
   query.deleteAccount(req.params.id).then(account => {
-    res.json(account)
+    res.send("account deleted")
   })
 });
 

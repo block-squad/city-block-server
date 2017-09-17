@@ -1,4 +1,4 @@
-const knex = require('knex');
+const knex = require('../db/knex.js');
 module.exports = {
   getAllAccounts: ()=>{
     return knex('account');
@@ -12,17 +12,20 @@ module.exports = {
   getOneProject: (id)=>{
     return knex('project').where('id', id);
   },
-  getAllContributionsForOneProject: (projectId)=>{
-    return knex('project_contributor')
-      .join('project', 'project.id', '=', 'project_contributor.project_id')
-      .join('account', 'account.id', '=', 'project_contributor.account.id')
-      .where('project.id', projectId)
+  getContributionsByAccount: (id) => {
+    return knex('account')
+      .innerJoin('project_contributor', 'account_id', 'account.id')
+      .innerJoin('project', 'project.id', 'project_contributor.project_id')
+      .select('project.*')
+      .where('account.id', id)
   },
-  getAllContributionsForOneAccount: (accountId)=>{
-    return knex('project_contributor')
-      .join('project', 'project.id', '=', 'project_contributor.project_id')
-      .join('account', 'account.id', '=', 'project_contributor.account.id')
-      .where('account.id', accountId);
+  getContributionsByProject: (id) => {
+    return knex('project')
+      .innerJoin('project_contributor', 'project_id', 'project.id')
+      .innerJoin('account', 'account.id', 'project_contributor.account_id')
+      .select('account.*')
+      .where('project.id', id)
+
   },
   postToAccount: (account)=>{
     return knex('account')
