@@ -12,16 +12,18 @@ module.exports = {
   getOneProject: (id)=>{
     return knex('project').where('id', id);
   },
-  getContributionsByAcccount: (id) => {
+  getContributionsByAccount: (id) => {
     return knex('account')
       .innerJoin('project_contributor', 'account_id', 'account.id')
       .innerJoin('project', 'project.id', 'project_contributor.project_id')
+      .select('project.*')
       .where('account.id', id)
   },
   getContributionsByProject: (id) => {
     return knex('project')
       .innerJoin('project_contributor', 'project_id', 'project.id')
       .innerJoin('account', 'account.id', 'project_contributor.account_id')
+      .select('account.*')
       .where('project.id', id)
 
   },

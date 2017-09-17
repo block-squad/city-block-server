@@ -35,7 +35,7 @@ router.patch('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
   query.deleteProject(req.params.id).then(project => {
-    res.json(project)
+    res.send("project deleted")
   })
 });
 
