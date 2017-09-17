@@ -15,7 +15,7 @@ module.exports = {
   getAllContributionsForOneProject: (projectId)=>{
     return
       knex('project_contributor')
-      .join('')
+      .join('project', 'project.id', '=', 'project_contributor.project_id')
       .where('project_id', projectId)
   },
   getAllContributionsForOneAccount: (accountId)=>{
