@@ -4,7 +4,6 @@ exports.seed = function(knex, Promise) {
     .then(function(){
       return knex('project').insert([
         {
-          id: 1,
           name: "New Trees",
           type: "parks and rec.",
           desc: "We want to add new trees to the park in downtown Denver on blah street.",
@@ -14,7 +13,6 @@ exports.seed = function(knex, Promise) {
           owner_id: 1,
           official_id: 5
         },{
-          id: 2,
           name: "Major Road Construction for South Broadway",
           type: "street/roads",
           desc: "Will add too more lanes in each direction on Broadway in Denver.",
@@ -24,7 +22,6 @@ exports.seed = function(knex, Promise) {
           owner_id: 2,
           official_id: 5
         },{
-          id: 3,
           name: "New playground equipment.",
           type: "education",
           desc: "The playground equipment is unsafe, and needs to be replaced immediately for grade school on Denver Street rd.",
@@ -34,7 +31,6 @@ exports.seed = function(knex, Promise) {
           owner_id: 3,
           official_id: 5
         },{
-          id: 4,
           name: "New community center",
           type: "building",
           desc: "We would like to see a new community center be built on Broadway in Denver.",
@@ -44,7 +40,6 @@ exports.seed = function(knex, Promise) {
           owner_id: 4,
           official_id: 5
         },{
-          id: 5,
           name: "New Art Sculpture",
           type: "culture",
           desc: "We want to add a new sculpture to the top of Stoner Hill.",
@@ -54,7 +49,6 @@ exports.seed = function(knex, Promise) {
           owner_id: 1,
           official_id: 5
         },{
-          id: 6,
           name: "Clean up the Platte River",
           type: "environment",
           desc: "It's nasty, it smells like someone spilled thousands of gallons of sewage in there, this is a top priority.",

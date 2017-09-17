@@ -4,7 +4,9 @@ const query = require('../db/query.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  console.log("pre query test");
   query.getAllAccounts().then(accounts => {
+    console.log(accounts);
     res.json(accounts)
   })
 });
@@ -16,7 +18,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/contributions/:id', function(req, res, next) {
-  query.getAllContributionsForOneAccount(req.params.id).then(account => {
+  query.getContributionsByAcccount(req.params.id).then(account => {
     res.json(account)
   })
 });
