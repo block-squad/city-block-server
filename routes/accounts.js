@@ -29,10 +29,7 @@ router.get('/:id', function(req, res, next) {
           return account
         })
     })).then((data) => {
-      let accounts = data.sort((a,b) => {
-        return a.id - b.id
-      })
-      res.json(accounts)
+      res.json(data)
     })
   })
 });

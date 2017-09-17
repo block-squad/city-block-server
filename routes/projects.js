@@ -5,13 +5,32 @@ const query = require('../db/query.js')
 /* GET projects listing. */
 router.get('/', function(req, res, next) {
   query.getAllProjects().then(projects => {
-    res.json(projects)
+    return Promise.all(projects.map((project) => {
+      return query.getContributionsByProject(project.id)
+        .then((contributions) => {
+          project.contributions = contributions;
+          return project
+        })
+    })).then((data) => {
+      let projects = data.sort((a,b) => {
+        return a.id - b.id
+      })
+      res.json(projects)
+    })
   })
 });
 
 router.get('/:id', function(req, res, next) {
-  query.getOneProject(req.params.id).then(project => {
-    res.json(project)
+  query.getOneProject(req.params.id).then(projects => {
+    return Promise.all(projects.map((project) => {
+      return query.getContributionsByProject(project.id)
+        .then((contributions) => {
+          project.contributions = contributions;
+          return project
+        })
+    })).then((data) => {
+      res.json(data)
+    })
   })
 });
 
