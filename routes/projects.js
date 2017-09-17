@@ -16,8 +16,8 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/contributions/:id', function(req, res, next) {
-  query.getAllContributionsForOneAccount().then(account => {
-    res.json(account)
+  query.getAllContributionsForOneProject().then(project => {
+    res.json(project)
   })
 });
 
