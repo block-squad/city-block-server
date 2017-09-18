@@ -21,6 +21,10 @@ router.post('/signup', (req, res, next) => {
       let token = jwt.sign(data, process.env.SECRETKEY)
       res.json({
         token: token,
+        user: {
+          id: data.id,
+          username: data.username
+        },
         message: "SUCCESS: account has been created, token has been generated"
       })
     })
@@ -47,6 +51,10 @@ router.post('/signin', (req, res, next) => {
             let newToken = jwt.sign(data, process.env.SECRETKEY)
             res.json({
               token: newToken,
+              user: {
+                id: data.id,
+                username: data.username
+              },
               message: "SUCCESS: sign in verified, a new token has been generated"
             })
           })
@@ -75,6 +83,10 @@ router.post('/signin', (req, res, next) => {
               let token = jwt.sign(data, process.env.SECRETKEY)
               res.json({
                 token: token,
+                user: {
+                  id: data.id,
+                  username: data.username
+                },
                 message: "SUCCESS: sign in verified, a new token has been generated"
               })
             } else {
