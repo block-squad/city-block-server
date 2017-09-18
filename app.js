@@ -10,7 +10,7 @@ const index = require('./routes/index');
 const accounts = require('./routes/accounts');
 const projects = require('./routes/projects');
 const contributions = require('./routes/contributions');
-
+const auth = require('./routes/auth')
 
 const app = express();
 
