@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const query = require('../db/query.js')
+const jwt = require('jsonwebtoken')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
