@@ -1,6 +1,18 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <p>This server is designed to hold information about the users <br>
-and the projects created for the City Block app.  You can find <br>
-all users by entering /users to the search bar and /projects to <br>
-find all projects!  Enjoy!</p>
+and the projects created for the City Block app.
+
+<h2>GET /accounts</h2>
+<p>use to get a list of all accounts with whatever contributions they have made</p>
+
+<h2>GET /accounts/:id</h2>
+<p>id = id of the account</p>
+<p>use to get an array with a single object for an account with a matching id</p>
+
+<h2>GET /projects</h2>
+<p>use to get a list of all projects, with a list of people who have contributed to each project</p>
+
+<h2>GET /projects/:id</h2>
+<p>id = id of project</p>
+<p>use to get an array containing a single object for the project with a matching id</p>
