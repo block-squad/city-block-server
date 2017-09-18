@@ -98,6 +98,16 @@ router.post('/signin', (req, res, next) => {
 
         }
       })
+      .catch((err) => {
+        res.json({
+          error: err,
+          message: "FAILURE: unknown error"
+        })
+      })
+  } else {
+    res.json({
+      message: "username and password must be supplied"
+    })
   }
 
 })
