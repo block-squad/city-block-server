@@ -35,12 +35,6 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.post('/', function(req, res, next) {
-  query.postToAccount(req.body).then(account => {
-    res.json(account)
-  })
-});
-
 router.patch('/:id', function(req, res, next) {
   query.updateAccount(req.body, req.params.id).then(account => {
     res.json(account)
