@@ -25,11 +25,14 @@ router.post('/signup', (req, res, next) => {
           id: data.id,
           username: data.username
         },
-        message: "SUCCESS: account has been created, token has been generated"
+        message: "SUCCESS: account has been created, token has been generated."
       })
     })
     .catch((err) => {
-      res.json({error: err})
+      res.json({
+        error: err,
+        message: "FAILURE: something went wrong with signing up, make sure you included all entities."
+      })
     })
 })
 
@@ -106,7 +109,7 @@ router.post('/signin', (req, res, next) => {
       })
   } else {
     res.json({
-      message: "username and password must be supplied"
+      message: "username and password must be supplied, either the entities are mispelled or they are missing entirely."
     })
   }
 
