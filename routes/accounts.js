@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
           account.contributions = contributions;
           return account
         })
-    })).then((data) => {
+    }))
+    .then((data) => {
       let accounts = data.sort((a,b) => {
         return a.id - b.id
       })
@@ -20,6 +21,19 @@ router.get('/', function(req, res, next) {
     })
   })
 });
+
+router.get('/proposals/:id', function(req,res,next) {
+  query.getAllProjects()
+    .then((data) => {
+      console.log();
+      let result = data.filter((e) => {
+        return req.params.id === e.owner_id
+      })
+      res.json(data.filter((e) => {
+        return req.params.id == e.owner_id
+      }))
+    })
+})
 
 router.get('/:id', function(req, res, next) {
   query.getOneAccount(req.params.id).then(accounts => {
